@@ -271,7 +271,7 @@ section{scroll-margin-top:84px}
 <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; border-top: 1px solid #232B40">
 <details style="border-bottom: 1px solid #232B40">
 <summary style="display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 22px 4px; min-height: 44px; font-weight: 700; font-size: 17px">イベントについて<svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#9AA3B5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></summary>
-<p style="margin: 0; padding: 0 4px 24px; color: #C9CFDA; font-size: 15px">本イベントは2～3人で挑戦していただく宿泊先を賭けた謎解きゲームです。各日同時に複数のチームが参加します。<br>行動する際は、チーム全員で行動いただきますようお願いたします。</p>
+<p style="margin: 0; padding: 0 4px 24px; color: #C9CFDA; font-size: 15px">本イベントは2～3人で挑戦していただく宿泊先を賭けた謎解きゲームです。各日同時に複数のチームが参加します。<br>行動する際は、チーム全員で行動いただきますようお願いいたします。</p>
 </details>
 <details style="border-bottom: 1px solid #232B40">
 <summary style="display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 22px 4px; min-height: 44px; font-weight: 700; font-size: 17px">宿泊先について<svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#9AA3B5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></summary>
@@ -368,7 +368,18 @@ section{scroll-margin-top:84px}
 <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#F2A93B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="8" r="5"></circle><path d="M11.5 11.5 21 21"></path><path d="M17 17l2.5-2.5"></path><path d="M14.5 14.5 16.5 12.5"></path></svg>
 <h2 style="margin: 0; font-family: 'Shippori Mincho B1', serif; font-weight: 800; font-size: clamp(21px, 6vw, 48px); line-height: 1.5">夜明けの最高を手にするのは、<br>30組のうち、わずか5組。</h2>
 <p style="margin: 0; color: #C9CFDA; font-size: 16px; display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 20px"><span style="white-space: nowrap">開催日：11/16,17,24,30</span><span style="white-space: nowrap">参加費：29,800円</span></p>
-<div aria-roledescription="カルーセル" aria-label="謎解き問題" style="width: 100%; max-width: 720px; display: flex; flex-direction: column; gap: 18px; margin-top: 8px">
+<div id="cd-root" role="timer" aria-label="最初の謎の公開までのカウントダウン" style="width: 100%; max-width: 720px; box-sizing: border-box; margin-top: 8px; display: none; flex-direction: column; align-items: center; gap: clamp(18px, 4vw, 28px); padding: clamp(28px, 6vw, 56px) clamp(16px, 4vw, 40px); background: #121828; border: 1px solid #232B40; border-radius: 16px">
+<span style="font-family: 'Big Shoulders Display', sans-serif; font-weight: 700; font-size: 15px; line-height: 1; letter-spacing: 0.32em; color: #F2A93B">ENIGMA</span>
+<p style="margin: 0; font-family: 'Shippori Mincho B1', serif; font-weight: 800; font-size: clamp(19px, 5vw, 28px); line-height: 1.5; color: #F5EEDD">最初の謎の公開まで</p>
+<div style="width: 100%; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(6px, 2vw, 16px)">
+<div style="display: flex; flex-direction: column; align-items: center; gap: 6px; padding: clamp(12px, 3vw, 20px) 4px; background: #0A0E18; border: 1px solid #2A3247; border-radius: 12px"><span style="font-family: 'Big Shoulders Display', sans-serif; font-weight: 900; font-size: clamp(32px, 10vw, 64px); line-height: 1; font-variant-numeric: tabular-nums; color: #F5EEDD"><span id="cd-days">--</span></span><span style="font-size: clamp(11px, 3vw, 13px); color: #9AA3B5">日</span></div>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 6px; padding: clamp(12px, 3vw, 20px) 4px; background: #0A0E18; border: 1px solid #2A3247; border-radius: 12px"><span style="font-family: 'Big Shoulders Display', sans-serif; font-weight: 900; font-size: clamp(32px, 10vw, 64px); line-height: 1; font-variant-numeric: tabular-nums; color: #F5EEDD"><span id="cd-hours">--</span></span><span style="font-size: clamp(11px, 3vw, 13px); color: #9AA3B5">時間</span></div>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 6px; padding: clamp(12px, 3vw, 20px) 4px; background: #0A0E18; border: 1px solid #2A3247; border-radius: 12px"><span style="font-family: 'Big Shoulders Display', sans-serif; font-weight: 900; font-size: clamp(32px, 10vw, 64px); line-height: 1; font-variant-numeric: tabular-nums; color: #F5EEDD"><span id="cd-minutes">--</span></span><span style="font-size: clamp(11px, 3vw, 13px); color: #9AA3B5">分</span></div>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 6px; padding: clamp(12px, 3vw, 20px) 4px; background: #0A0E18; border: 1.5px solid #F2A93B; border-radius: 12px"><span style="font-family: 'Big Shoulders Display', sans-serif; font-weight: 900; font-size: clamp(32px, 10vw, 64px); line-height: 1; font-variant-numeric: tabular-nums; color: #F2A93B"><span id="cd-seconds">--</span></span><span style="font-size: clamp(11px, 3vw, 13px); color: #9AA3B5">秒</span></div>
+</div>
+<p style="margin: 0; font-size: clamp(13px, 3.6vw, 15px); color: #C9CFDA"><span id="cd-label"></span> に、ここに最初の謎が現れます。</p>
+</div>
+<div id="pz-root" aria-roledescription="カルーセル" aria-label="謎解き問題" style="width: 100%; max-width: 720px; display: none; flex-direction: column; gap: 18px; margin-top: 8px">
 <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; height: 32px">
 <span style="font-family: 'Big Shoulders Display', sans-serif; font-weight: 700; font-size: 15px; line-height: 1; letter-spacing: 0.32em; color: #F2A93B">ENIGMA</span>
 <span id="pz-counter" aria-live="polite" style="font-family: 'Big Shoulders Display', sans-serif; font-weight: 800; font-size: 22px; line-height: 1; letter-spacing: 0.06em; white-space: nowrap"><span id="pz-current" style="color: #F2A93B">1</span><span style="color: #5A6378"> / <span class="pz-total">31</span></span></span>
@@ -666,6 +677,26 @@ section{scroll-margin-top:84px}
   });
 
   render();
+
+  // 最初の謎の公開日時（日本時間）。テスト中：2026年10月7日 6:00。本番は '2026-11-14T00:00:00+09:00' / '11月14日 0:00' に戻す。
+  var REVEAL_AT = new Date('2026-10-07T06:00:00+09:00').getTime();
+  var REVEAL_LABEL = '10月7日 6:00';
+  $('cd-label').textContent = REVEAL_LABEL;
+  var cdTimer;
+  function tick() {
+    var left = Math.max(0, REVEAL_AT - Date.now());
+    var open = left <= 0;
+    $('cd-root').style.display = open ? 'none' : 'flex';
+    $('pz-root').style.display = open ? 'flex' : 'none';
+    if (open) { clearInterval(cdTimer); return; }
+    var sec = Math.floor(left / 1000);
+    $('cd-days').textContent = Math.floor(sec / 86400);
+    $('cd-hours').textContent = pad(Math.floor((sec % 86400) / 3600));
+    $('cd-minutes').textContent = pad(Math.floor((sec % 3600) / 60));
+    $('cd-seconds').textContent = pad(sec % 60);
+  }
+  tick();
+  cdTimer = setInterval(tick, 1000);
 })();
 </script>
 </body>
