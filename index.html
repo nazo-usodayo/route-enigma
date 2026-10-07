@@ -535,7 +535,9 @@ section{scroll-margin-top:84px}
 
   var total = PUZZLE_IMAGES.length;
   var slideCount = total + 1;
-  var idx = 0;
+  // スライド位置 → 問題番号（0枚目＝謎の場所、1枚目以降＝Q.01〜）
+  var pos = 0;
+  var toQ = function (p) { return p === 0 ? total : p - 1; };
   var inputs = {};
   var results = {};
   var solved = {};
@@ -577,7 +579,7 @@ section{scroll-margin-top:84px}
       '<div style="font-family: \'Big Shoulders Display\', sans-serif; font-weight: 900; font-size: 28px; line-height: 1; text-align: left; color: #F5EEDD">' + no + '</div>' +
       '<span class="pz-badge" style="display: none; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: #0A0E18; background: ' + ACCENT + '; padding: 4px 12px; border-radius: 999px; white-space: nowrap"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"></path></svg>正解済み</span>' +
       '</div>' + media;
-    track.insertBefore(slide, place);
+    track.appendChild(slide);
     badges.push(slide.querySelector('.pz-badge'));
   });
 
@@ -597,6 +599,7 @@ section{scroll-margin-top:84px}
   });
 
   function render() {
+    var idx = toQ(pos);
     var onPlace = idx >= total;
     var result = results[idx] || '';
     var solvedCount = Object.keys(solved).filter(function (k) { return +k < total; }).length;
@@ -607,7 +610,7 @@ section{scroll-margin-top:84px}
     $('pz-current-no').textContent = onPlace ? '謎の場所' : 'Q.' + pad(idx + 1);
     document.querySelectorAll('.pz-total').forEach(function (el) { el.textContent = total; });
     document.querySelectorAll('.pz-solved').forEach(function (el) { el.textContent = solvedCount; });
-    $('pz-progress').style.width = ((idx + 1) / slideCount * 100).toFixed(2) + '%';
+    $('pz-progress').style.width = ((pos + 1) / slideCount * 100).toFixed(2) + '%';
     if (input.value !== (inputs[idx] || '')) input.value = inputs[idx] || '';
 
     show($('pz-msg-correct-q'), result === 'correct' && !onPlace, 'flex');
@@ -634,6 +637,7 @@ section{scroll-margin-top:84px}
 
   $('pz-form').addEventListener('submit', function (e) {
     e.preventDefault();
+    var idx = toQ(pos);
     var val = inputs[idx] || '';
     var r;
     var placeDone = idx >= total && solved[total];
@@ -654,6 +658,7 @@ section{scroll-margin-top:84px}
   });
 
   input.addEventListener('input', function (e) {
+    var idx = toQ(pos);
     inputs[idx] = e.target.value;
     results[idx] = idx >= total && started ? 'start' : (solved[idx] ? 'correct' : '');
     render();
@@ -662,18 +667,18 @@ section{scroll-margin-top:84px}
   // ループ移動：最後の次は最初へ、最初の前は最後へ。端をまたぐときは一瞬で切り替える。
   function go(i) {
     var n = ((i % slideCount) + slideCount) % slideCount;
-    if (Math.abs(n - idx) > 1) {
+    if (Math.abs(n - pos) > 1) {
       track.style.scrollBehavior = 'auto';
       track.scrollLeft = n * track.clientWidth;
       requestAnimationFrame(function () { track.style.scrollBehavior = ''; });
     } else {
       track.scrollTo({ left: n * track.clientWidth, behavior: 'smooth' });
     }
-    idx = n;
+    pos = n;
     render();
   }
-  $('pz-prev').addEventListener('click', function () { go(idx - 1); });
-  $('pz-next').addEventListener('click', function () { go(idx + 1); });
+  $('pz-prev').addEventListener('click', function () { go(pos - 1); });
+  $('pz-next').addEventListener('click', function () { go(pos + 1); });
 
   // 端でさらにスワイプしたときもループさせる
   var touch = null;
@@ -701,7 +706,7 @@ section{scroll-margin-top:84px}
     clearTimeout(scrollTimer);
     scrollTimer = setTimeout(function () {
       var n = Math.round(track.scrollLeft / track.clientWidth);
-      if (n !== idx) { idx = n; render(); }
+      if (n !== pos) { pos = n; render(); }
     }, 120);
   });
 
