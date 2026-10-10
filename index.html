@@ -21,6 +21,10 @@ button:disabled{cursor:default}
 h1,h2,h3,p,summary{word-break:auto-phrase;line-break:strict}
 section{scroll-margin-top:84px}
 @media (max-width:720px){.nav-link{display:none!important}}
+.photo-track{animation:photo-scroll 40s linear infinite}
+.photo-marquee:hover .photo-track{animation-play-state:paused}
+@keyframes photo-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion: reduce){.photo-track{animation:none}.photo-marquee{overflow-x:auto}}
 </style>
 </head>
 <body>
@@ -94,13 +98,21 @@ section{scroll-margin-top:84px}
 
 <!-- Photo strip -->
 <div>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0; border-top: 3px solid #111111; border-bottom: 3px solid #111111; background: #111111">
-<img src="images/fc774577dac7bedd0be9fd84e25ac49f.jpg" alt="夜の東京の街並み" style="width: 100%; aspect-ratio: 1 / 1; object-fit: cover; display: block">
-<img src="images/eeb412490f7a240bba8cf7c9dc441b4b.jpg" alt="夕日の中を走る車のサイドミラー" style="width: 100%; aspect-ratio: 1 / 1; object-fit: cover; display: block">
-<img src="images/19a98d77848ded3892352d0bab105ddf.jpg" alt="スマートフォンを操作する手元" style="width: 100%; aspect-ratio: 1 / 1; object-fit: cover; display: block">
-<img src="images/308a988e50278bb052adeae01333980a.jpg" alt="車内で盛り上がる3人のチーム" style="width: 100%; aspect-ratio: 1 / 1; object-fit: cover; display: block">
-<img src="images/b3939a2d5b180bf04aeca10c24918f53.jpg" alt="ホテルのカードキーを持つ手" style="width: 100%; aspect-ratio: 1 / 1; object-fit: cover; display: block">
-<img src="images/a615914bc5edffeb9238cb7c23506569.jpg" alt="ホテルのロビー" style="width: 100%; aspect-ratio: 1 / 1; object-fit: cover; display: block">
+<div class="photo-marquee" style="overflow: hidden; border-top: 3px solid #111111; border-bottom: 3px solid #111111; background: #111111">
+<div class="photo-track" style="display: flex; width: max-content">
+<img src="images/fc774577dac7bedd0be9fd84e25ac49f.jpg" alt="夜の東京の街並み" style="flex: 0 0 auto; width: clamp(170px, 26vw, 300px); aspect-ratio: 1 / 1; object-fit: cover; display: block">
+<img src="images/eeb412490f7a240bba8cf7c9dc441b4b.jpg" alt="夕日の中を走る車のサイドミラー" style="flex: 0 0 auto; width: clamp(170px, 26vw, 300px); aspect-ratio: 1 / 1; object-fit: cover; display: block">
+<img src="images/19a98d77848ded3892352d0bab105ddf.jpg" alt="スマートフォンを操作する手元" style="flex: 0 0 auto; width: clamp(170px, 26vw, 300px); aspect-ratio: 1 / 1; object-fit: cover; display: block">
+<img src="images/308a988e50278bb052adeae01333980a.jpg" alt="車内で盛り上がる3人のチーム" style="flex: 0 0 auto; width: clamp(170px, 26vw, 300px); aspect-ratio: 1 / 1; object-fit: cover; display: block">
+<img src="images/b3939a2d5b180bf04aeca10c24918f53.jpg" alt="ホテルのカードキーを持つ手" style="flex: 0 0 auto; width: clamp(170px, 26vw, 300px); aspect-ratio: 1 / 1; object-fit: cover; display: block">
+<img src="images/a615914bc5edffeb9238cb7c23506569.jpg" alt="ホテルのロビー" style="flex: 0 0 auto; width: clamp(170px, 26vw, 300px); aspect-ratio: 1 / 1; object-fit: cover; display: block">
+<img src="images/fc774577dac7bedd0be9fd84e25ac49f.jpg" alt="" aria-hidden="true" style="flex: 0 0 auto; width: clamp(170px, 26vw, 300px); aspect-ratio: 1 / 1; object-fit: cover; display: block">
+<img src="images/eeb412490f7a240bba8cf7c9dc441b4b.jpg" alt="" aria-hidden="true" style="flex: 0 0 auto; width: clamp(170px, 26vw, 300px); aspect-ratio: 1 / 1; object-fit: cover; display: block">
+<img src="images/19a98d77848ded3892352d0bab105ddf.jpg" alt="" aria-hidden="true" style="flex: 0 0 auto; width: clamp(170px, 26vw, 300px); aspect-ratio: 1 / 1; object-fit: cover; display: block">
+<img src="images/308a988e50278bb052adeae01333980a.jpg" alt="" aria-hidden="true" style="flex: 0 0 auto; width: clamp(170px, 26vw, 300px); aspect-ratio: 1 / 1; object-fit: cover; display: block">
+<img src="images/b3939a2d5b180bf04aeca10c24918f53.jpg" alt="" aria-hidden="true" style="flex: 0 0 auto; width: clamp(170px, 26vw, 300px); aspect-ratio: 1 / 1; object-fit: cover; display: block">
+<img src="images/a615914bc5edffeb9238cb7c23506569.jpg" alt="" aria-hidden="true" style="flex: 0 0 auto; width: clamp(170px, 26vw, 300px); aspect-ratio: 1 / 1; object-fit: cover; display: block">
+</div>
 </div>
 <p style="max-width: 1240px; margin: 6px auto 0; padding: 0 clamp(16px, 4vw, 40px); text-align: right; font-size: 12px; color: #5C5C5C">※写真はイメージです</p>
 </div>
@@ -574,6 +586,9 @@ section{scroll-margin-top:84px}
 <sc-if value="{{pz.isEmpty}}" hint-placeholder-val="{{ false }}">
 <p style="margin: 0; font-size: 14px; color: #444444">答えを入力してから送信してください。</p>
 </sc-if>
+<sc-if value="{{pz.isTooEarly}}" hint-placeholder-val="{{ false }}">
+<p style="margin: 0; display: flex; align-items: center; gap: 8px; font-size: 16px; font-weight: 900; color: #8A5A00"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>まだスタートできません。{{pz.startLabel}}になりましたら、もう一度「スタート」と送信してください。</p>
+</sc-if>
 </div>
 <p style="margin: 0; font-size: 12px; color: #444444">正解数 <span style="font-weight: 900; color: #111111">{{pz.solvedCount}}</span> / {{pz.total}}</p>
 </form>
@@ -839,6 +854,9 @@ class Component extends DCLogic {
     const PLACE_ANSWERS = ['みついのりぱーくとうきょうどーむほてるちゅうしゃじょう', '三井のリパーク東京ドームホテル駐車場'];
     // 謎の場所に正解した後、15:45に入力してもらう合言葉
     const START_WORDS = ['スタート'];
+    // 「スタート」を受け付け始める日時（日本時間）。テスト中：2026年10月11日 1:15。
+    const START_AT = new Date('2026-10-11T01:15:00+09:00').getTime();
+    const START_LABEL = '10月11日 1時15分';
     const total = PUZZLE_IMAGES.length;
     const slideCount = total + 1;
     const st = this.state || {};
@@ -891,7 +909,8 @@ class Component extends DCLogic {
       if (!norm(val)) r = 'empty';
       else if (placeDone) {
         // 謎の場所に正解した後は「スタート」の入力を受け付ける
-        r = START_WORDS.map(norm).indexOf(norm(val)) !== -1 ? 'start' : 'wrong';
+        const isStartWord = START_WORDS.map(norm).indexOf(norm(val)) !== -1;
+        r = !isStartWord ? 'wrong' : (Date.now() < START_AT ? 'early' : 'start');
       } else {
         const key = cur >= total ? PLACE_ANSWERS : PUZZLE_ANSWERS[cur];
         const ans = [].concat(key || []).map(norm).filter(Boolean);
@@ -984,6 +1003,8 @@ class Component extends DCLogic {
         isStart: result === 'start' && onPlace,
         isWrong: result === 'wrong',
         isEmpty: result === 'empty',
+        isTooEarly: result === 'early' && onPlace,
+        startLabel: START_LABEL,
         solvedCount: Object.keys(solved).filter((k) => +k < total).length,
         allSolved: Object.keys(solved).filter((k) => +k < total).length >= total,
         placeRows,
